@@ -24,6 +24,8 @@ const getProducts = async (): Promise<CartItemType[]> =>
   await (await fetch('https://fakestoreapi.com/products')).json()
 
 const App = () => {
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'products',
     getProducts
@@ -39,6 +41,11 @@ const App = () => {
 
   return (
     <Wrapper>
+      // 31:35 mins
+      // https://www.youtube.com/watch?v=sfmL6bGbiN8
+      <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+        Cart goes here
+      </Drawer>
       <Grid container spacing={3}>
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={4}>

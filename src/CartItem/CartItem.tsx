@@ -1,3 +1,4 @@
+import React, { FC } from 'react';
 import Button from '@material-ui/core/Button';
 // Types
 import { CartItemType } from '../App';
@@ -10,7 +11,7 @@ type Props = {
   removeFromCart: (id: number) => void;
 };
 
-const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart }) => (
+const CartItem: FC<Props> = ({ item, addToCart, removeFromCart }) => (
   <Wrapper>
     <div>
       <h3>{item.title}</h3>

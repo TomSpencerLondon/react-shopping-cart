@@ -21,7 +21,7 @@ export default {
     functions: 0,
     lines: 0,
   },
-  setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   preset: "ts-jest",
   testPathIgnorePatterns: ["/node_modules/", "/tests/e2e/"],
   transform: {

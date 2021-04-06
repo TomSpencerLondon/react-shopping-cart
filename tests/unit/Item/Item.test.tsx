@@ -2,13 +2,10 @@ import React from 'react';
 import Item from '../../../src/Item/Item';
 import {render, screen } from "@testing-library/react";
 import {CartItemType} from "../../../src/App";
+import userEvent from "@testing-library/user-event";
 
-// 1. extend to check for other things
-// 2. react testing library user event click
-// https://testing-library.com/docs/ecosystem-user-event/
-
-describe('it works', () => {
-  it('works', () => {
+describe('Item', () => {
+  it('renders the title', () => {
     // arrange
     const item: CartItemType = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
     const handleAddToCart = jest.fn();
@@ -17,24 +14,19 @@ describe('it works', () => {
     render(<Item item={item} handleAddToCart={handleAddToCart}/>)
 
     // assert
-    screen.getByText("Title");
+    expect(screen.getByText("Title")).toBeInTheDocument();
   })
-})
 
-// Possible code snippet from: https://testing-library.com/docs/ecosystem-user-event/
-// example:
-// import React from 'react'
-// import { render, screen } from '@testing-library/react'
-// import userEvent from '@testing-library/user-event'
-//
-// test('click', () => {
-//   render(
-//     <div>
-//       <label htmlFor="checkbox">Check</label>
-//       <input id="checkbox" type="checkbox" />
-//     </div>
-//   )
-//
-//   userEvent.click(screen.getByText('Check'))
-//   expect(screen.getByLabelText('Check')).toBeChecked()
-// })
+  it('should add an item to the cart', () => {
+    // arrange
+    const item: CartItemType = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
+    const handleAddToCart = jest.fn();
+    render(<Item item={item} handleAddToCart={handleAddToCart}/>)
+
+    // act
+    userEvent.click(screen.getByText('Add to cart'))
+
+    // assert
+    expect(handleAddToCart).toBeCalledWith(item);
+  })
+});

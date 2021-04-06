@@ -8,7 +8,8 @@ type Props = {
   addToCart: (clickedItem: CartItemType) => void;
   removeFromCart: (id: number) => void;
 };
-
+// needs a spy on the cartItem:
+//
 const Cart: FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
   const calculateTotal = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount * item.price, 0);

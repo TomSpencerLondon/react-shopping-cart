@@ -12,7 +12,7 @@ type Props = {
 //
 const Cart: FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
   const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+    items.reduce((acc: number, item) => acc + item.amount * item.price, 0);
 
   return (
     <Wrapper>

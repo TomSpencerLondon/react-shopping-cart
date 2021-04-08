@@ -24,6 +24,9 @@ describe('Cart', () => {
   });
 });
 
+// render cartItem and make sure amount is right price.
+//
+
 // const tracks = [createFakeTrack(), createFakeTrack()];
 // const spyOnTrackCard = jest.spyOn(TrackCard, "default");
 //

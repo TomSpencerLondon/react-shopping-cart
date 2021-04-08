@@ -20,7 +20,7 @@ describe('Cart', () => {
 
 
     // assert
-    cartItems.forEach((item) => expect(spyOnCartItem).toBeCalled());
+    cartItems.forEach((item) => expect(spyOnCartItem).toBeCalledWith({ item, addToCart, removeFromCart }, {} ));
   });
 });
 

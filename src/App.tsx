@@ -10,6 +10,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
+import {getItems} from "./Item/api/getItems";
 // Types
 export type CartItemType = {
   id: number;
@@ -21,15 +22,12 @@ export type CartItemType = {
   amount: number;
 };
 
-const getProducts = async (): Promise<CartItemType[]> =>
-  await (await fetch('https://fakestoreapi.com/products')).json();
-
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
-    'products',
-    getProducts
+    'getItems',
+    getItems
   );
 
   const getTotalItems = (items: CartItemType[]) =>

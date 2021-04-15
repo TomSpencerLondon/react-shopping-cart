@@ -1,13 +1,14 @@
 import React from 'react';
 import Item from '../../../src/Item/Item';
 import {render, screen } from "@testing-library/react";
-import {CartItemType} from "../../../src/App";
+
 import userEvent from "@testing-library/user-event";
+import {CartItem} from "../../../src/CartItem/data/CartItem";
 
 describe('Item', () => {
   it('renders the title', () => {
     // arrange
-    const item: CartItemType = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
+    const item: CartItem = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
     const handleAddToCart = jest.fn();
 
     // act
@@ -19,7 +20,7 @@ describe('Item', () => {
 
   it('should add an item to the cart', () => {
     // arrange
-    const item: CartItemType = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
+    const item: CartItem = {amount: 0, category: "", description: "", id: 0, image: "", price: 0, title: "Title"};
     const handleAddToCart = jest.fn();
     render(<Item item={item} handleAddToCart={handleAddToCart}/>)
 

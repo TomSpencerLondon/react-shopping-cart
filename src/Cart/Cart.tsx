@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import CartItem from '../CartItem/CartItem';
+import CartItemCard from '../CartItem/components/CartItemCard';
+import { CartItem } from '../CartItem/data/CartItem';
 import { Wrapper } from './Cart.styles';
-import { CartItemType } from '../App';
 
 type Props = {
-  cartItems: CartItemType[];
-  addToCart: (clickedItem: CartItemType) => void;
+  cartItems: CartItem[];
+  addToCart: (clickedItem: CartItem) => void;
   removeFromCart: (id: number) => void;
 };
 // needs a spy on the cartItem:
 //
 const Cart: FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
-  const calculateTotal = (items: CartItemType[]) =>
+  const calculateTotal = (items: CartItem[]) =>
     items.reduce((acc: number, item) => acc + item.amount * item.price, 0);
 
   return (
@@ -19,7 +19,7 @@ const Cart: FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
       <h2>Your Shopping Cart</h2>
       {cartItems.length === 0 ? <p>No items in cart.</p> : null}
       {cartItems.map(item => (
-        <CartItem
+        <CartItemCard
           key={item.id}
           item={item}
           addToCart={addToCart}

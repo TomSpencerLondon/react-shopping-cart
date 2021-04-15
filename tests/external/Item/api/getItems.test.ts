@@ -13,16 +13,15 @@ describe('getItems', () => {
   it('returns requested items', async () => {
     // act
     const items = await getItems();
-    console.log(items[1]);
-    // assert
-    expect(items[0].id).toEqual(expect.any(Number));
-    expect(items[0]).toMatchObject({
+
+    items.forEach((item) => expect(item).toMatchObject({
       id: expect.any(Number),
       title: expect.any(String),
       price: expect.any(Number),
       description: expect.any(String),
       image: expect.any(String),
       amount: 0,
-    })
+    }));
+
   });
 });

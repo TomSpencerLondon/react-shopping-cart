@@ -1,19 +1,20 @@
 import React from 'react';
 import Cart from "../../../src/Cart/Cart";
-import * as CartItem from "../../../src/CartItem/CartItem";
-import {CartItemType} from "../../../src/App";
+import * as CartItemCard from "../../../src/CartItem/components/CartItemCard";
+
 import {render, screen} from "@testing-library/react";
 import Item from "../../../src/Item/Item";
+import {CartItem} from "../../../src/CartItem/data/CartItem";
 
 describe('Cart', () => {
   it('renders the CartItems', () => {
     // arrange
-    const item1: CartItemType = {amount: 1, category: "", description: "", id: 0, image: "", price: 5.0, title: "Item1"};
-    const item2: CartItemType = {amount: 2, category: "", description: "", id: 1, image: "", price: 10.0, title: "Item2"};
+    const item1: CartItem = {amount: 1, category: "", description: "", id: 0, image: "", price: 5.0, title: "Item1"};
+    const item2: CartItem = {amount: 2, category: "", description: "", id: 1, image: "", price: 10.0, title: "Item2"};
     const addToCart = jest.fn();
     const removeFromCart = jest.fn();
-    const cartItems: CartItemType[] = [item1, item2];
-    const spyOnCartItem = jest.spyOn(CartItem, "default");
+    const cartItems: CartItem[] = [item1, item2];
+    const spyOnCartItem = jest.spyOn(CartItemCard, "default");
 
     // act
     render(<Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} />)
@@ -25,12 +26,12 @@ describe('Cart', () => {
 
   it('renders the correct amount', () => {
     // arrange
-    const item1: CartItemType = {amount: 1, category: "", description: "", id: 0, image: "", price: 5.0, title: "Item1"};
-    const item2: CartItemType = {amount: 2, category: "", description: "", id: 1, image: "", price: 10.0, title: "Item2"};
+    const item1: CartItem = {amount: 1, category: "", description: "", id: 0, image: "", price: 5.0, title: "Item1"};
+    const item2: CartItem = {amount: 2, category: "", description: "", id: 1, image: "", price: 10.0, title: "Item2"};
     const addToCart = jest.fn();
     const removeFromCart = jest.fn();
-    const cartItems: CartItemType[] = [item1, item2];
-    const spyOnCartItem = jest.spyOn(CartItem, "default");
+    const cartItems: CartItem[] = [item1, item2];
+    const spyOnCartItem = jest.spyOn(CartItemCard, "default");
 
     // act
     render(<Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} />)

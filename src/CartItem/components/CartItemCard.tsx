@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
 import Button from '@material-ui/core/Button';
-// Types
-import { CartItemType } from '../App';
+
 // Styles
-import { Wrapper } from './CartItem.styles';
+import { Wrapper } from '../CartItem.styles';
+import {CartItem} from "../data/CartItem";
 
 type Props = {
-  item: CartItemType;
-  addToCart: (clickedItem: CartItemType) => void;
+  item: CartItem;
+  addToCart: (clickedItem: CartItem) => void;
   removeFromCart: (id: number) => void;
 };
 
-const CartItem: FC<Props> = ({ item, addToCart, removeFromCart }) => (
+const CartItemCard: FC<Props> = ({ item, addToCart, removeFromCart }) => (
   <Wrapper>
     <div>
       <h3>{item.title}</h3>
@@ -43,4 +43,4 @@ const CartItem: FC<Props> = ({ item, addToCart, removeFromCart }) => (
   </Wrapper>
 );
 
-export default CartItem;
+export default CartItemCard;

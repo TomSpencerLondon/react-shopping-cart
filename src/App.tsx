@@ -11,29 +11,20 @@ import Badge from '@material-ui/core/Badge';
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
 import {getItems} from "./Item/api/getItems";
-// Types
-export type CartItemType = {
-  id: number;
-  category: string;
-  description: string;
-  image: string;
-  price: number;
-  title: string;
-  amount: number;
-};
+import {CartItem} from "./CartItem/data/CartItem";
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const { data, isLoading, error } = useQuery<CartItemType[]>(
+  const [cartItems, setCartItems] = useState([] as CartItem[]);
+  const { data, isLoading, error } = useQuery<CartItem[]>(
     'getItems',
     getItems
   );
 
-  const getTotalItems = (items: CartItemType[]) =>
+  const getTotalItems = (items: CartItem[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
-  const handleAddToCart = (clickedItem: CartItemType) => {
+  const handleAddToCart = (clickedItem: CartItem) => {
     setCartItems(prev => {
       // 1. Is the item already added in the cart?
       const isItemInCart = prev.find(item => item.id === clickedItem.id);
@@ -59,7 +50,7 @@ const App = () => {
         } else {
           return [...ack, item];
         }
-      }, [] as CartItemType[])
+      }, [] as CartItem[])
     );
   };
 

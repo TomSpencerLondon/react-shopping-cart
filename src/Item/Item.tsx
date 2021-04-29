@@ -18,7 +18,7 @@ const Item: FC<Props> = ({ item, handleAddToCart }) => (
       <p>{item.description}</p>
       <h3>${item.price}</h3>
     </div>
-    <Button onClick={() => handleAddToCart(item)}>Add to cart</Button>
+    <Button data-testid={`add-to-cart-button${item.id}`} onClick={() => handleAddToCart(item)}>Add to cart</Button>
   </Wrapper>
 );
 

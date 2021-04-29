@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 // Components
 import Item from './Item/Item';
 import Cart from './Cart/Cart';
@@ -13,6 +13,14 @@ import Badge from '@material-ui/core/Badge';
 import { Wrapper, StyledButton } from './App.styles';
 import {getItems} from "./Item/api/getItems";
 import {CartItem} from "./CartItem/data/CartItem";
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+    },
+  },
+});
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -59,27 +67,27 @@ const App = () => {
   if (error) return <div>Something went wrong ...</div>;
 
   return (
-    <Wrapper>
-      <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-        <Cart
-          cartItems={cartItems}
-          addToCart={handleAddToCart}
-          removeFromCart={handleRemoveFromCart}
-        />
-      </Drawer>
-      <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-          <AddShoppingCartIcon />
-        </Badge>
-      </StyledButton>
-      <Grid container spacing={3}>
-        {data?.map(item => (
-          <Grid item key={item.id} xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
-        ))}
-      </Grid>
-    </Wrapper>
+      <Wrapper>
+        <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+          <Cart
+            cartItems={cartItems}
+            addToCart={handleAddToCart}
+            removeFromCart={handleRemoveFromCart}
+          />
+        </Drawer>
+        <StyledButton onClick={() => setCartOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+            <AddShoppingCartIcon />
+          </Badge>
+        </StyledButton>
+        <Grid container spacing={3}>
+          {data?.map(item => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))}
+        </Grid>
+      </Wrapper>
   );
 };
 

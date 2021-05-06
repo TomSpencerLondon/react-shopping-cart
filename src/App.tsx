@@ -13,6 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import { Wrapper, StyledButton } from './App.styles';
 import {getItems} from "./Item/api/getItems";
 import {CartItem} from "./CartItem/data/CartItem";
+import AuthContextProvider from "./Auth/providers/AuthContext";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -67,6 +68,7 @@ const App = () => {
   if (error) return <div>Something went wrong ...</div>;
 
   return (
+    <AuthContextProvider>
       <Wrapper>
         <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
           <Cart
@@ -88,6 +90,7 @@ const App = () => {
           ))}
         </Grid>
       </Wrapper>
+    </AuthContextProvider>
   );
 };
 

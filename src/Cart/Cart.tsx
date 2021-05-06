@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import CartItemCard from '../CartItem/components/CartItemCard';
 import { CartItem } from '../CartItem/data/CartItem';
 import { Wrapper } from './Cart.styles';
+import {useAuthContext} from "../Auth/providers/AuthContext";
 
 type Props = {
   cartItems: CartItem[];
@@ -11,12 +12,14 @@ type Props = {
 // needs a spy on the cartItem:
 //
 const Cart: FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+  const { setToken } = useAuthContext();
   const calculateTotal = (items: CartItem[]) =>
     items.reduce((acc: number, item) => acc + item.amount * item.price, 0);
 
   return (
     <Wrapper>
       <h2>Your Shopping Cart</h2>
+      <button onClick={() => setToken("")}>login</button>
       {cartItems.length === 0 ? <p>No items in cart.</p> : null}
       {cartItems.map(item => (
         <CartItemCard

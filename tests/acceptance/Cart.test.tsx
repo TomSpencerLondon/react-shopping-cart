@@ -32,3 +32,26 @@ test('should be able to handle adding and removing items and getting the total',
   // the items expect in cart are in the cart - and the total is correct
   // expect(screen.getByText(/logout/i)).toBeInTheDocument()
 });
+
+test('should be able to login', async () => {
+  // arrange
+  // create items
+  // create cart
+  const item1: CartItem = createFakeCartItem({id: 1});
+
+
+  jest.spyOn(itemApi, "getItems").mockResolvedValue([item1]);
+
+  // act
+  // render the App
+  // add 2 items to the cart
+  // remove 1 item
+  await renderAct(<App />);
+
+  await waitFor(() => {
+    userEvent.click(screen.getByTestId('add-to-cart-button1'))
+    userEvent.click(screen.getByRole('button', {name: 'login'}))
+  });
+
+  expect(screen.getByText('Is logged in')).toBeInTheDocument();
+});

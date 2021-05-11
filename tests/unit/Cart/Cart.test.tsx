@@ -7,7 +7,7 @@ import Item from "../../../src/Item/Item";
 import {CartItem} from "../../../src/CartItem/data/CartItem";
 
 describe('Cart', () => {
-  it('renders the CartItems', () => {
+  it.only('renders the CartItems', () => {
     // arrange
     const item1: CartItem = {amount: 1, category: "", description: "", id: 0, image: "", price: 5.0, title: "Item1"};
     const item2: CartItem = {amount: 2, category: "", description: "", id: 1, image: "", price: 10.0, title: "Item2"};
@@ -19,6 +19,7 @@ describe('Cart', () => {
     // act
     render(<Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} />)
 
+    screen.debug();
 
     // assert
     cartItems.forEach((item) => expect(spyOnCartItem).toBeCalledWith({ item, addToCart, removeFromCart }, {} ));

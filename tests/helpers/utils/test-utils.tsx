@@ -3,15 +3,18 @@ import '@testing-library/jest-dom/extend-expect';
 import {act, render} from '@testing-library/react';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '../../../src/App';
+import AuthContextProvider from "../../../src/Auth/providers/AuthContext";
 
 export const renderAct = async (Component: ReactNode) => {
   await act(async () => {
-    render(<QueryClientProvider client={queryClient}>{Component}</QueryClientProvider>);
+    customRender(<>{Component}</>);
   });
 };
 
 export const wrapperWithQueryClient = ({ children }: any) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  <AuthContextProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  </AuthContextProvider>
 );
 const customRender = (ui: any, options = {}): unknown =>
   render(ui, { wrapper: wrapperWithQueryClient, ...options });

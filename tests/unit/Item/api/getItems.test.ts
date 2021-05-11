@@ -22,7 +22,8 @@ describe('mapToCartItem', () => {
     }
 
     // act
-    const result = mapToCartItem({})
+    const result = mapToCartItem(data)
+
     // assert
     expect(result).toEqual({
       id: 1,

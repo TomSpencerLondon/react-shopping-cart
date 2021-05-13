@@ -33,7 +33,7 @@ test('should be able to handle adding and removing items and getting the total',
   // expect(screen.getByText(/logout/i)).toBeInTheDocument()
 });
 
-test('should be able to login', async () => {
+test.only('should be able to login', async () => {
   // arrange
   // create items
   // create cart
@@ -48,10 +48,9 @@ test('should be able to login', async () => {
   // remove 1 item
   await renderAct(<App />);
 
-  await waitFor(() => {
-    userEvent.click(screen.getByTestId('add-to-cart-button1'))
-    userEvent.click(screen.getByRole('button', {name: 'login'}))
-  });
+  userEvent.click(screen.getByTestId('add-to-cart-button1'))
+  userEvent.click(screen.getByRole('button', {name: '1'}))
+  userEvent.click(screen.getByRole('button', {name: 'login'}))
 
   expect(screen.getByText('Is logged in')).toBeInTheDocument();
 });

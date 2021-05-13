@@ -33,7 +33,7 @@ test('should be able to handle adding and removing items and getting the total',
   // expect(screen.getByText(/logout/i)).toBeInTheDocument()
 });
 
-test.only('should be able to login', async () => {
+test('should be able to login', async () => {
   // arrange
   // create items
   // create cart
